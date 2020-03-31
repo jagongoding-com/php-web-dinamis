@@ -21,7 +21,7 @@
         <input type="number" name="b" placeholder="Bilangan b" value="<?php echo @$_GET['b'] ?>">
 
         <div style="margin-top: 1rem">
-            <button type="button" onclick="location.href = '?clear'">Clear</button>
+            <button type="button" onclick="location.href = '?'">Clear</button>
             <button type="submit">Hitung</button>
         </div>
     </form>
