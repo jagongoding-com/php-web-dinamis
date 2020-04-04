@@ -17,6 +17,14 @@ function validasi(array $listInput)
                 $lolos = lolosRequired($request[$input]);
 
                 echo $lolos ? "Lolos" : "Tidak Lolos";
+            } elseif ($peraturan === 'email') {
+                $lolos = lolosEmail($request[$input]);
+
+                echo $lolos ? "Lolos" : "Tidak Lolos";
+            } elseif ($peraturan === 'username') {
+                $lolos = lolosUsername($request[$input]);
+
+                echo $lolos ? "Lolos" : "Tidak Lolos";
             }
 
             echo "<br>";
@@ -29,4 +37,20 @@ function validasi(array $listInput)
 function lolosRequired($nilai)
 {
     return (bool) @$nilai;
+}
+
+function lolosEmail($nilai)
+{
+    return filter_var($nilai, FILTER_VALIDATE_EMAIL);
+}
+
+function lolosUsername($nilai)
+{
+    preg_match("/^[a-zA-Z0-9_]+/", $nilai, $output);
+
+    if (count($output)) {
+        return $output[0] === $nilai;
+    }
+
+    return false;
 }
