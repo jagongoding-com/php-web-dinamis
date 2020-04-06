@@ -25,6 +25,14 @@ function validasi(array $listInput)
                 $lolos = lolosUsername($request[$input]);
 
                 echo $lolos ? "Lolos" : "Tidak Lolos";
+            } elseif ($peraturan === 'numeric') {
+                $lolos = lolosNumeric($request[$input]);
+
+                echo $lolos ? "Lolos" : "Tidak Lolos";
+            } elseif ($peraturan === 'url') {
+                $lolos = lolosUrl($request[$input]);
+
+                echo $lolos ? "Lolos" : "Tidak Lolos";
             }
 
             echo "<br>";
@@ -53,4 +61,14 @@ function lolosUsername($nilai)
     }
 
     return false;
+}
+
+function lolosNumeric($nilai)
+{
+    return is_numeric($nilai);
+}
+
+function lolosUrl($nilai)
+{
+    return filter_var($nilai, FILTER_VALIDATE_URL);
 }

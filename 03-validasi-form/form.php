@@ -14,7 +14,7 @@
         </div>
         <div style="margin-top: 0.5rem">
             <label>Email</label> <br>
-            <input type="email" name="email" placeholder="Masukkan email">
+            <input type="text" name="email" placeholder="Masukkan email">
         </div>
         <div style="margin-top: 0.5rem">
             <label>Username</label> <br>
@@ -22,11 +22,11 @@
         </div>
         <div style="margin-top: 0.5rem">
             <label>Usia</label> <br>
-            <input type="number" name="usia" placeholder="Masukkan usia">
+            <input type="text" name="usia" placeholder="Masukkan usia">
         </div>
         <div style="margin-top: 0.5rem">
             <label>Website</label> <br>
-            <input type="url" name="website" placeholder="Masukkan website">
+            <input type="text" name="website" placeholder="Masukkan website">
         </div>
 
         <div style="margin-top: 0.5rem">
