@@ -10,4 +10,15 @@ $peraturan = [
     'website' => ['required', 'url']
 ];
 
-validasi($peraturan);
+$errors = validasi($peraturan);
+
+if (count($errors) > 0) {
+    $old = $_REQUEST;
+    $queryString = http_build_query([
+        'errors' => $errors,
+        'old' => $old
+    ]);
+    
+    header("Location: form.php?{$queryString}");
+    die();
+}
