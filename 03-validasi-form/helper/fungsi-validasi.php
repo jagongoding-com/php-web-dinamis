@@ -13,27 +13,10 @@ function validasi(array $listInput)
         foreach ($listPeraturan as $peraturan) {
             echo "-> Peraturan <strong>{$peraturan}</strong>: ";
 
-            if ($peraturan === 'required') {
-                $lolos = lolosRequired($request[$input]);
+            $namaFungsi = 'lolos' . ucfirst($peraturan);
+            $lolos = $namaFungsi($request[$input]);
 
-                echo $lolos ? "Lolos" : "Tidak Lolos";
-            } elseif ($peraturan === 'email') {
-                $lolos = lolosEmail($request[$input]);
-
-                echo $lolos ? "Lolos" : "Tidak Lolos";
-            } elseif ($peraturan === 'username') {
-                $lolos = lolosUsername($request[$input]);
-
-                echo $lolos ? "Lolos" : "Tidak Lolos";
-            } elseif ($peraturan === 'numeric') {
-                $lolos = lolosNumeric($request[$input]);
-
-                echo $lolos ? "Lolos" : "Tidak Lolos";
-            } elseif ($peraturan === 'url') {
-                $lolos = lolosUrl($request[$input]);
-
-                echo $lolos ? "Lolos" : "Tidak Lolos";
-            }
+            echo $lolos ? 'Lolos' : 'Tidak Lolos';
 
             echo "<br>";
         }
