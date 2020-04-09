@@ -1,3 +1,7 @@
+<?php
+    $old = (object) @$_GET['old'];
+    $errors = (object) @$_GET['errors'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,17 +11,13 @@
 </head>
 <body>
     <h1>Validasi Form</h1>
-    <?php
-        $old = (object) @$_GET['old'];
-        $errors = (object) @$_GET['errors'];
-    ?>
     <form action="proses.php">
         <div>
             <label>Nama</label> <br>
             <input type="text" name="nama" value="<?php echo @$old->nama ?>" placeholder="Masukkan nama">
             <?php
             if (@$errors->nama):?>
-                <div style="color: red"><?php echo $errors->nama[0] ?></span>
+                <div style="color: red"><?php echo $errors->nama[0] ?></div>
             <?php
             endif; ?>
         </div>
@@ -26,7 +26,7 @@
             <input type="text" name="email" value="<?php echo @$old->email ?>" placeholder="Masukkan email">
             <?php
             if (@$errors->email):?>
-                <div style="color: red"><?php echo $errors->email[0] ?></span>
+                <div style="color: red"><?php echo $errors->email[0] ?></div>
             <?php
             endif; ?>
         </div>
@@ -35,7 +35,7 @@
             <input type="text" name="username" value="<?php echo @$old->username ?>" placeholder="Masukkan username">
             <?php
             if (@$errors->username):?>
-                <div style="color: red"><?php echo $errors->username[0] ?></span>
+                <div style="color: red"><?php echo $errors->username[0] ?></div>
             <?php
             endif; ?>
         </div>
@@ -44,7 +44,7 @@
             <input type="text" name="usia" value="<?php echo @$old->usia ?>" placeholder="Masukkan usia">
             <?php
             if (@$errors->usia):?>
-                <div style="color: red"><?php echo $errors->usia[0] ?></span>
+                <div style="color: red"><?php echo $errors->usia[0] ?></div>
             <?php
             endif; ?>
         </div>
