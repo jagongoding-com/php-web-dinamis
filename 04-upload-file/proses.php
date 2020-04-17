@@ -13,6 +13,14 @@ if (!is_dir($folderUpload)) {
 $fileFoto = (object) @$_FILES['foto'];
 $fileKtp = (object) @$_FILES['ktp'];
 
+if ($fileFoto->size > 1000 * 2000) {
+    die("File tidak boleh lebih dari 1MB");
+}
+
+if ($fileKtp->type !== 'image/jpeg') {
+    die("File ktp harus jpeg!");
+}
+
 # mulai upload file
 $uploadFotoSukses = move_uploaded_file(
     $fileFoto->tmp_name, "{$folderUpload}/{$fileFoto->name}"
