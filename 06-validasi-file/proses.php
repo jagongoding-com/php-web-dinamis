@@ -26,7 +26,7 @@ if (!@$fileFoto->name) {
  * Di sini kita bisa menggunakan elseif dari pada membuat
  * if baru seperti ini.
  */
-if ($fileFoto->size > 1000 * 1000) {
+if ($fileFoto->size > 1000 * 2000) {
     array_push($listPesanError, "Ukuran maksimal file adalah 1MB.");
 }
 
@@ -45,6 +45,13 @@ if (!in_array(@$fileFoto->type, $ekstensiYangDibolehkan)) {
 }
 
 /**
+ * Peraturan keempat: periksa tipe file berdasarkan mime content type
+ */
+if (!in_array(mime_content_type($fileFoto->tmp_name), $ekstensiYangDibolehkan)) {
+    array_push($listPesanError, "Tipe file tidak diijinkan.");
+}
+
+/**
  * Tampilkan pesan error dan hentikan program jika validasi tidak lolos.
  */
 if ($listPesanError) {
@@ -58,4 +65,26 @@ if ($listPesanError) {
     die();
 }
 
-echo @$fileFoto->type;
+
+# JIKA LOLOS
+
+$folderUpload = "./assets/uploads";
+
+# periksa apakah folder tersedia
+if (!is_dir($folderUpload)) {
+  # jika tidak maka folder harus dibuat terlebih dahulu
+  mkdir($folderUpload, 0777, $rekursif = true);
+}
+
+# mulai upload file
+$uploadFotoSukses = move_uploaded_file(
+    $fileFoto->tmp_name, "{$folderUpload}/{$fileFoto->name}"
+);
+
+
+if ($uploadFotoSukses) {
+    $link = "{$folderUpload}/{$fileFoto->name}";
+    echo "Sukses Upload Foto: <a href='{$link}'>{$fileFoto->name}</a> <br>";
+    echo "<img src='{$link}'>";
+    echo "<br>";
+}
